@@ -77,6 +77,15 @@
             text-decoration: none;
         }
 
+        /* ギミック用の「N」のスタイル（連打時のスマホ誤動作防止） */
+        .target-n {
+            cursor: pointer;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            display: inline-block;
+        }
+
         .nav-links {
             display: flex;
             list-style: none;
@@ -264,6 +273,65 @@
             margin-bottom: 0;
         }
 
+        /* --- シークレットポップアップ（モーダル） --- */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.6);
+            backdrop-filter: blur(5px);
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background-color: var(--card-bg);
+            padding: 24px;
+            border-radius: 12px;
+            max-width: 400px;
+            width: 100%;
+            position: relative;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            animation: modalFadeIn 0.3s ease;
+            text-align: center;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--text-color);
+            opacity: 0.5;
+            transition: opacity var(--transition-speed);
+        }
+
+        .close-button:hover {
+            opacity: 1;
+        }
+
+        .modal-img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
         /* --- フッター & 隠しリンク --- */
         footer {
             text-align: center;
@@ -308,7 +376,7 @@
 
     <header>
         <div class="container nav-container">
-            <a href="#" class="logo">M.N. Portfolio</a>
+            <a href="#" class="logo">M.<span id="click-target" class="target-n">N</span>. Portfolio</a>
             <nav>
                 <ul class="nav-links">
                     <li><a href="#about">About</a></li>
@@ -345,7 +413,7 @@
                 </div>
                 <div class="skill-card">
                     <h3>3D Mathematics</h3>
-                    <p>立体投影やアニメーションの座標変換に不可欠な、行列計算やベクトル幾何学などの数学的知識の習得に取り組んでいます。</p>
+                    <p>立体投影やアニメーションの座標変換に不可欠な、行列計算やベクトル幾含学などの数学的知識の習得に取り組んでいます。</p>
                 </div>
             </div>
         </section>
@@ -387,6 +455,14 @@
         </section>
 
     </main>
+
+    <div id="catModal" class="modal" aria-hidden="true">
+        <div class="modal-content">
+            <span class="close-button" id="closeModal">&times;</span>
+            <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=800&q=80" alt="猫の写真" class="modal-img">
+            <p style="font-weight: bold; font-size: 1rem;">シークレットキャットが現れた！</p>
+        </div>
+    </div>
 
     <footer>
         <p>&copy; 2026 My Portfolio. All Rights Reserved<a href="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=1200&q=80" target="_blank" rel="noopener noreferrer" class="secret-link">.</a></p>
@@ -435,6 +511,49 @@
 
             sections.forEach(section => {
                 observer.observe(section);
+            });
+
+            // --- 5回連続クリックギミック ---
+            const triggerN = document.getElementById('click-target');
+            const catModal = document.getElementById('catModal');
+            const closeModal = document.getElementById('closeModal');
+            
+            let clickCount = 0;
+            let clickTimer;
+
+            triggerN.addEventListener('click', (e) => {
+                // aタグとしてのページトップ移動挙動、およびイベントバブリングを無効化
+                e.preventDefault();
+                e.stopPropagation();
+
+                clickCount++;
+                clearTimeout(clickTimer);
+
+                // 5回連続クリック達成時
+                if (clickCount === 5) {
+                    catModal.classList.add('show');
+                    catModal.setAttribute('aria-hidden', 'false');
+                    clickCount = 0;
+                }
+
+                // 1.5秒間次のクリックがなければカウントをリセット（連続判定）
+                clickTimer = setTimeout(() => {
+                    clickCount = 0;
+                }, 1500);
+            });
+
+            // ポップアップを閉じる処理（×ボタン）
+            closeModal.addEventListener('click', () => {
+                catModal.classList.remove('show');
+                catModal.setAttribute('aria-hidden', 'true');
+            });
+
+            // ポップアップの外側（背景）をクリックしても閉じる処理
+            window.addEventListener('click', (e) => {
+                if (e.target === catModal) {
+                    catModal.classList.remove('show');
+                    catModal.setAttribute('aria-hidden', 'true');
+                }
             });
         });
     </script>
