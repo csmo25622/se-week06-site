@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
+    <title>M.N. Portfolio</title>
     <style>
         /* --- リセット & 共通変数 --- */
         * {
@@ -28,7 +28,7 @@
             --text-color: #e0e0e0;
             --card-bg: #1e1e1e;
             --primary-color: #6c8ebd;
-            --secondary-color: #4a7caba;
+            --secondary-color: #4a7cba;
             --border-color: #333333;
         }
 
@@ -153,14 +153,13 @@
         }
 
         /* --- About セクション --- */
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
-        }
-
         .about-text p {
             margin-bottom: 15px;
+        }
+        
+        .highlight {
+            font-weight: bold;
+            color: var(--secondary-color);
         }
 
         /* --- Skills セクション --- */
@@ -265,13 +264,19 @@
             margin-bottom: 0;
         }
 
-        /* --- フッター --- */
+        /* --- フッター & 隠しリンク --- */
         footer {
             text-align: center;
             padding: 30px 0;
             font-size: 0.85rem;
             border-top: 1px solid var(--border-color);
             opacity: 0.7;
+        }
+
+        .secret-link {
+            text-decoration: none;
+            color: inherit;
+            cursor: default;
         }
 
         /* --- スマートフォン向けレスポンシブデザイン --- */
@@ -303,7 +308,7 @@
 
     <header>
         <div class="container nav-container">
-            <a href="#" class="logo">Portfolio</a>
+            <a href="#" class="logo">M.N. Portfolio</a>
             <nav>
                 <ul class="nav-links">
                     <li><a href="#about">About</a></li>
@@ -320,12 +325,10 @@
 
         <section id="about">
             <h2>About</h2>
-            <div class="about-grid">
-                <div class="about-text">
-                    <p>はじめまして。ご覧いただきありがとうございます。Webの技術やモノづくりに関心があるクリエイター/開発者です。</p>
-                    <p>シンプルで使いやすく、人々の課題を解決するアプローチを日々模索しています。情報過多な現代において、直感的かつ本質的な価値を届けられるデザインと実装を意識しています。</p>
-                    <p>現在は新しいフロントエンド周辺の技術習得に加え、アクセシビリティやパフォーマンスの最適化について学びを深めています。</p>
-                </div>
+            <div class="about-text">
+                <p>プロフィールをご覧いただきありがとうございます。<strong>M.N.</strong> と申します。</p>
+                <p>現在、私は<span class="highlight">「3Dホログラムを用いたアニメーションの立体投影技術」</span>に強い関心を持っており、光と映像が織りなす次世代の表現手法や、その制御システムの仕組みについて探求しています。</p>
+                <p>現実空間にデジタルな生命を吹き込むような、没入感のあるテクノロジーの実現を目指し、理論と技術の両面からアプローチを続けています。</p>
             </div>
         </section>
 
@@ -333,16 +336,16 @@
             <h2>Skills</h2>
             <div class="skills-grid">
                 <div class="skill-card">
-                    <h3>HTML / CSS</h3>
-                    <p>セマンティックなマークアップ、レスポンシブデザインの設計、柔軟なレイアウト構築が可能です。</p>
+                    <h3>C++</h3>
+                    <p>ハードウェアに近いレイヤーでの高速な処理や、3Dグラフィックスの描画制御、論理的なアルゴリズムの実装に向けた基礎を学んでいます。</p>
                 </div>
                 <div class="skill-card">
-                    <h3>JavaScript</h3>
-                    <p>モダンな構文を用いたUIパーツの実装、標準APIを活用した動的なインタラクションの作成ができます。</p>
+                    <h3>Python</h3>
+                    <p>データ処理、シミュレーション、あるいは数理モデルの検証などを効率的に行うためのスクリプト作成や学習を進めています。</p>
                 </div>
                 <div class="skill-card">
-                    <h3>UI/UX Design</h3>
-                    <p>使いやすさとアクセシビリティを考慮し、目的に沿った情報設計とワイヤーフレームを提案します。</p>
+                    <h3>3D Mathematics</h3>
+                    <p>立体投影やアニメーションの座標変換に不可欠な、行列計算やベクトル幾何学などの数学的知識の習得に取り組んでいます。</p>
                 </div>
             </div>
         </section>
@@ -351,24 +354,22 @@
             <h2>Works</h2>
             <div class="works-grid">
                 <div class="work-card">
-                    <div class="work-img-placeholder">Image Placement</div>
+                    <div class="work-img-placeholder">Simulation Code</div>
                     <div class="work-content">
-                        <h3>静的コーポレートサイト</h3>
-                        <p>シンプルさと表示速度を重視して構築した、ローカルビジネス向けのWebサイト。スマホ対応を徹底しました。</p>
+                        <h3>光線追跡シミュレータの基礎</h3>
+                        <p>ホログラム投影における光の挙動を擬似的に計算するため、計算負荷や描画ロジックの最適化を想定した基礎プログラムです。</p>
                         <div class="work-tags">
-                            <span class="tag">HTML</span>
-                            <span class="tag">CSS</span>
+                            <span class="tag">C++</span>
                         </div>
                     </div>
                 </div>
                 <div class="work-card">
-                    <div class="work-img-placeholder">Image Placement</div>
+                    <div class="work-img-placeholder">Data Analysis Tool</div>
                     <div class="work-content">
-                        <h3>タスク管理ツール</h3>
-                        <p>ブラウザのローカルストレージを利用し、外部サーバー不要で動作する軽量な進捗管理アプリケーションです。</p>
+                        <h3>投影データ解析スクリプト</h3>
+                        <p>3次元座標データを読み込み、適切な光度や配置パターンのシミュレーション結果をグラフ化・可視化するためのツールです。</p>
                         <div class="work-tags">
-                            <span class="tag">JavaScript</span>
-                            <span class="tag">CSS</span>
+                            <span class="tag">Python</span>
                         </div>
                     </div>
                 </div>
@@ -379,16 +380,16 @@
             <h2>Reflection</h2>
             <div class="reflection-content">
                 <p><strong>これまでの歩みと振り返り</strong></p>
-                <p>これまで多様なミニプロジェクトや学習を通じて、基礎の重要性を再認識してきました。特に、ライブラリに依存しすぎず、ピュアな技術でどれだけパフォーマンスとユーザー体験を高められるかという挑戦は、自身の強みになっています。</p>
+                <p>3Dホログラムや立体投影という難易度の高い分野に挑む中で、C++やPythonを用いた基盤的なプログラミングスキルの重要性を強く実感しています。複雑な構造をコードで表現する楽しさと難しさを学びながら、一歩ずつ知識を肉付けしてきました。</p>
                 <p><strong>今後の展望</strong></p>
-                <p>今後は、インタラクションの質を高めつつ、あらゆるユーザーが等しく情報にアクセスできる「誰も置き去りにしないWebサイト」の構築を目指します。技術的な視野を広げ、常に新しい価値を提供できるようアップデートを続けていきます。</p>
+                <p>今後は、現在学んでいるソフトウェアの技術と、光学やディスプレイなどのハードウェア的な知見を融合させ、実際にアニメーションが空間に浮かび上がるプロトタイプの製作を目指します。常に未知の領域にアンテナを張り、独自の表現を追求していきます。</p>
             </div>
         </section>
 
     </main>
 
     <footer>
-        <p>&copy; 2026 My Portfolio. All Rights Reserved.</p>
+        <p>&copy; 2026 My Portfolio. All Rights Reserved<a href="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=1200&q=80" target="_blank" rel="noopener noreferrer" class="secret-link">.</a></p>
     </footer>
 
     <script>
@@ -427,7 +428,7 @@
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('visible');
-                        observer.unobserve(entry.target); // 一度表示されたら監視を解除
+                        observer.unobserve(entry.target);
                     }
                 });
             }, observerOptions);
